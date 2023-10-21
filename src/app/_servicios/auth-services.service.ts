@@ -87,4 +87,9 @@ export class AuthServicesService {
     return this.userPayLoad.role;
   }
 
+  getIdFromToken(){
+    if(this.userPayLoad)
+    return this.userPayLoad.nameid
+  }
+
 }

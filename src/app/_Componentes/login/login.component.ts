@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 import { Login } from './../../_Modelos/login';
 import { UserStoreService } from 'src/app/_servicios/user-store.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PassworForgetComponent } from './passwor-forget/passwor-forget.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService:AuthServicesService,
     private router:Router, private fb:FormBuilder,
-    public storeService:UserStoreService
+    public storeService:UserStoreService,
+    public dialog: MatDialog
     ) {
       if(this.authService.usuarioData){
         this.router.navigate(['/']);
@@ -56,6 +59,7 @@ export class LoginComponent implements OnInit {
          alert(Response.mensaje)
          this.router.navigate(['/Inicio']);
        }
+       alert(Response.mensaje)
      },
        error:(err)=>{
              alert(err?.error.mensaje)
@@ -68,6 +72,11 @@ export class LoginComponent implements OnInit {
     this.isText ? this.visibility = "visibility": this.visibility = "visibility_off";
     this.isText ? this.type = "text" : this.type ="password";
 
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(PassworForgetComponent, {      
+    });
   }
 
 }

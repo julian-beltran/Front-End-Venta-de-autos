@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>¿Has olvidado tu contraseña?</h1>
+<div mat-dialog-content>
+<small>Por favor ingrese su Email registrado, donde enviaremos el link de recuperacion de contraseña</small>
+
+<mat-divider></mat-divider>
+<br>
+<mat-form-field class="mat-form-full">
+    <mat-label>
+        <mat-icon>mail</mat-icon> Email
+    </mat-label>
+    <input matInput placeholder="Email" type="text" [(ngModel)]="resetPassword" (ngModelChange)="CheckValidEmail($event)">
+  </mat-form-field>
+  <small class="text-danger" *ngIf="!resetPassword">*Email es requerido*</small>
+  <small class="text-danger" *ngIf="!validEmail && resetPassword">*Email es invalido*</small>
+</div>
+<div mat-dialog-actions>
+    <button id="closeBtn" mat-button (click)="onNoClick()">Cerrar</button>
+    <button mat-button color="primary" type="submit" (click)="confirmSend()">enviar</button>
+  </div>

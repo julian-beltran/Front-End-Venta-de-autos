@@ -3,7 +3,7 @@
     <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
     <mat-icon *ngIf="drawer.opened">close</mat-icon>
   </button>
-  <h1>Bienvenido! {{name}}</h1>
+  <h1>Bienvenido! {{name}} id {{idname}}</h1>
   <button mat-raised-button (click)="logOut()" *ngIf="usuario">
     <mat-icon>exit_to_app</mat-icon>
     <span>Cerrar Sesión</span>

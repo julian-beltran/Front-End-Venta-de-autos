@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class UserStoreService {
   private unique_name$ = new BehaviorSubject<String>("");
   private role$ = new BehaviorSubject<String>("");
+  private nameid$= new BehaviorSubject<String>("");
+ 
 
   constructor() { }
 
@@ -16,10 +18,18 @@ export class UserStoreService {
   public setRolFromStore(role:string){
     this.role$.next(role);
   }
+  
   public getnameFromStore(){
     return this.unique_name$.asObservable();
   }
   public setNameFromStore(unique_name:string){
     this.unique_name$.next(unique_name);
+  }
+
+  public getIdFromStore(){
+    return this.nameid$.asObservable();
+  }
+  public setIdFromStore(nameid:string){
+    this.nameid$.next(nameid);
   }
 }

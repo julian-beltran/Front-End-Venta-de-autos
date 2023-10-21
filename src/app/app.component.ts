@@ -14,6 +14,7 @@ export class AppComponent {
   usuario: Auth;
   public name: string="";
   public role: string="";
+  public idname: string="";
   constructor(public authServicesService:AuthServicesService,private router:Router, private userStore: UserStoreService){
       this.authServicesService.usua.subscribe(res=>{
           this.usuario=res;
@@ -28,6 +29,11 @@ export class AppComponent {
       this.userStore.getRolFromStore().subscribe(val=>{
         const rolFromToken = this.authServicesService.getRoleFromToken();
         this.role = val || rolFromToken
+      })
+
+      this.userStore.getIdFromStore().subscribe(val=>{
+        const IdFromToken = this.authServicesService.getIdFromToken();
+        this.idname = val || IdFromToken
       })
      
   }

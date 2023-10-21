@@ -16,6 +16,9 @@ import { LoginComponent } from './_Componentes/login/login.component';
 import { JwtInterceptor } from './_Security/jwt.interceptor';
 import { LogUpComponent } from './_Componentes/log-up/log-up.component';
 import { AutosComponent } from './_Componentes/autos/autos.component';
+import { PassworForgetComponent } from './_Componentes/login/passwor-forget/passwor-forget.component';
+import { ResetPasswordComponent } from './_Componentes/reset-password/reset-password.component';
+import { AddAutosComponent } from './_Componentes/autos/add-autos/add-autos.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { AutosComponent } from './_Componentes/autos/autos.component';
     DeleteUsuarioComponent,
     LoginComponent,
     LogUpComponent,
-    AutosComponent
+    AutosComponent,
+    PassworForgetComponent,
+    ResetPasswordComponent,
+    AddAutosComponent
   ],
   imports: [
     BrowserModule,
