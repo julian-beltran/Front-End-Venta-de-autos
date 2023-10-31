@@ -1,0 +1,23 @@
+.contenedor{
+    margin-top: 0%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.example-card {
+    max-width: 900px;
+    margin-bottom: 8px;
+  }
+  .mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.mat-card-header-text {
+    margin: -80px;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+}

@@ -19,6 +19,23 @@ import { AutosComponent } from './_Componentes/autos/autos.component';
 import { PassworForgetComponent } from './_Componentes/login/passwor-forget/passwor-forget.component';
 import { ResetPasswordComponent } from './_Componentes/reset-password/reset-password.component';
 import { AddAutosComponent } from './_Componentes/autos/add-autos/add-autos.component';
+import { ApproveCarComponent } from './_Componentes/autos/approve-car/approve-car.component';
+
+import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { CardModule } from 'primeng/card';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { ApproveComponent } from './_Componentes/autos/approve/approve.component';
+import { GalleriaModule } from 'primeng/galleria';
+import {CarouselModule} from 'primeng/carousel';
+import {ButtonModule} from 'primeng/button';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +49,9 @@ import { AddAutosComponent } from './_Componentes/autos/add-autos/add-autos.comp
     AutosComponent,
     PassworForgetComponent,
     ResetPasswordComponent,
-    AddAutosComponent
+    AddAutosComponent,
+    ApproveCarComponent,
+    ApproveComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +60,20 @@ import { AddAutosComponent } from './_Componentes/autos/add-autos/add-autos.comp
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule,
+    ToastModule,
+    CardModule,
+    AvatarModule,
+    AvatarGroupModule,
+    GalleriaModule,
+    CarouselModule,
+    ButtonModule
+    
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true},
+    ConfirmationService, MessageService
   ],
   bootstrap: [AppComponent]
 })

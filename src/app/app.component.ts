@@ -3,6 +3,7 @@ import { Auth } from './_Modelos/auth';
 import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 import { Router } from '@angular/router';
 import { UserStoreService } from './_servicios/user-store.service';
+import { UsuariosService } from './_servicios/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,9 @@ export class AppComponent {
   public name: string="";
   public role: string="";
   public idname: string="";
-  constructor(public authServicesService:AuthServicesService,private router:Router, private userStore: UserStoreService){
+  public lst: any[];
+  public imagen:string;
+  constructor(private usuariosService :UsuariosService,public authServicesService:AuthServicesService,private router:Router, private userStore: UserStoreService){
       this.authServicesService.usua.subscribe(res=>{
           this.usuario=res;
           console.log(res);
@@ -34,6 +37,15 @@ export class AppComponent {
       this.userStore.getIdFromStore().subscribe(val=>{
         const IdFromToken = this.authServicesService.getIdFromToken();
         this.idname = val || IdFromToken
+
+        
+       if(this.idname !== undefined){
+         this.usuariosService.getUser(Number(this.idname)).subscribe(response=>{
+           this.lst=response.data;
+           this.imagen=response.data.imagen;
+           console.log(response.data);
+       })
+      }
       })
      
   }
@@ -43,6 +55,14 @@ export class AppComponent {
   logOut(){
     this.authServicesService.logout();
     this.router.navigate(['/login']);
+  }
+
+
+  GetUserLogin(){
+    this.usuariosService.getUser(Number(this.idname)).subscribe(response=>{
+      this.lst=response.data;
+      console.log(response.data);
+  })
   }
 
 }

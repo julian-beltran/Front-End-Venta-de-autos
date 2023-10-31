@@ -1,2 +1,44 @@
-{{name}}
-<p>Comprador</p>
+
+<br>
+<div class="contenedor">
+<h1>Comprador: {{name}}</h1>
+<div *ngFor="let list of lst ">
+  <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title >{{list.precio}}$</mat-card-title>
+          <mat-card-subtitle>precio</mat-card-subtitle>
+        </mat-card-title-group>
+      <div class="flex">
+        <h3>marca: {{list.marca}} </h3>
+        <h3>linea: {{list.linea}} </h3>
+      </div>
+      <div class="flex">
+        <h3>modelo: {{list.modelo}} </h3>
+        <h3>carroceria: {{list.carroseria}} </h3>
+      </div>
+      <div class="flex">
+          <h3>kilometraje: {{list.kilometraje}} km </h3> 
+          <h3>placa: {{list.placa}}</h3>
+        </div>
+      
+
+        <img mat-card-md-image src={{list.imagen1}} >
+        
+      </mat-card-header>
+      <mat-card-content>
+          <br>
+          {{list.descripcion}}
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <button mat-button color="primary">Comprar</button>
+        <button mat-button color="primary">ver</button>
+        <button mat-button color="primary">descargar Cotización</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
+
+</div>
+
+

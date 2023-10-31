@@ -31,4 +31,8 @@ export class UsuariosService {
   deleteUser(id:number): Observable<Response>{
     return this.http.delete<Response>(`${this.url}/${id}`);
   }
+
+  getUser(id:number):Observable<Response>{
+    return this.http.get<Response>(`${this.url}/${id}`);
+  }
 }

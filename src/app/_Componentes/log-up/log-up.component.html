@@ -132,6 +132,11 @@
                 </div>
                 <mat-divider></mat-divider>
                 <br>
+                    <label>Inserte una foto de perfil</label>
+              
+                    <p-fileUpload name="imagen" chooseLabel="insertar" accept="image/*" [auto]="true" [customUpload]="true" #imageFileUpload></p-fileUpload>
+                <p>  </p>
+                <br>
                 <div>
                     <button type="submit" [disabled]="!loginForm.valid"  mat-raised-button color="primary">Registrarse</button>
                 </div>
@@ -142,3 +147,4 @@
         </mat-card-content>
     </mat-card>
     </div>
+    

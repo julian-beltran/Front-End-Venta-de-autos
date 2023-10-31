@@ -17,19 +17,33 @@
 <mat-drawer-container class="example-sidenav-content" autosize >
   <mat-drawer #drawer style="width: 200px" mode="side" >
     <div *ngIf="usuario">
-    <img src="data:image/png;base64,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" width="128" style="margin-left: 20px;" />
-    <mat-divider></mat-divider>
+      
+        <img class="circular--square" src={{imagen}} width="128" style="margin-left: 20px;" />
+      
+      <div *ngIf="imagen === null">
+        <img class="circular--square" src="https://assets.stickpng.com/images/585e4beacb11b227491c3399.png" width="128" style="margin-left: 20px;">
+      </div>
+        <mat-divider></mat-divider>
     <ng-container *ngIf="role==='administrador'">
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Usuarios']">
       <mat-icon>search</mat-icon>
       <span>Usuarios</span>
     </button>
-  </ng-container>
     <mat-divider></mat-divider>
-    <ng-container *ngIf="true">
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AprovarAutos']">
+      <mat-icon>search</mat-icon>
+      <span>Ofertas</span>
+    </button>
+  </ng-container>
+    
+    <ng-container *ngIf="role==='vendedor'">
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Inicio']">
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
+    </button>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AgregarAuto']">
+      <mat-icon>home</mat-icon>
+      <span>vender Auto</span>
     </button>
   </ng-container>
     <mat-divider></mat-divider>

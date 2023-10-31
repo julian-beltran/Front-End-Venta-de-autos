@@ -1,0 +1,90 @@
+<div class="secciones">
+<div class="contenedor">
+<p-carousel  [value]="imagenes" [numVisible]="1" [numScroll]="1" [circular]="true" >
+  <ng-template pTemplate="item" let-imagenes>
+      <img src="{{imagenes.imagen}}" style="width: 100%"/>
+  </ng-template>
+</p-carousel>
+<br>
+<mat-divider></mat-divider>
+<br>
+<div class="propiedades">
+  <h1>Caracteristicas del vehiculo</h1>
+<p>Modelo: {{modelo}}</p>
+<p>carroceria: {{carroseria}}</p>
+<p>Kilometraje: {{kilometraje}}</p>
+<p>Placa: {{placa}}</p>
+<p>Precio: {{precio}}</p>
+<p>Color: plateado</p>
+
+</div>
+<br>
+<mat-divider></mat-divider>
+<br>
+<div class="descripcion">
+  <h1>Descripción</h1>
+<p class="pDescripcion">{{descripcion}}</p>
+
+
+</div>
+<br>
+<mat-divider></mat-divider>
+<br>
+<h1>¿DESEA APROVAR ESTA PUBLICACION?</h1>
+<button mat-raised-button color="primary">Confirmar</button>
+  
+</div>
+
+<div>
+
+<mat-card class="cardPrecio">
+  <mat-card-header class="headerPrecio">
+    <mat-card-title-group>
+      <mat-card-subtitle>publicado el 1 de febrero del 2022</mat-card-subtitle>
+      <br>
+      <mat-card-title>{{marca}} {{linea}}</mat-card-title>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <h1 class="h1Precio">{{precio}}$</h1>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Descargar Cotización</button>
+    <button mat-stroked-button color="primary">Comprar</button>
+  </mat-card-actions>
+
+</mat-card>  
+<br>
+<mat-card class="cardVendedor">
+  <mat-card-header class="headerVendedor">
+    <mat-card-title-group>
+      <mat-card-title>Informacion del vendedor</mat-card-title>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <h1 class="h1Vendedor">{{nombre}} {{apellido}}</h1>
+    <h2>Telefono</h2>
+    <p class="pVendedor">{{telefono}}</p>
+    <h2>Dirección</h2>
+    <p class="pVendedor">{{direccion}}</p>
+    <h2>Correo electronico</h2>
+    <p class="pVendedor">{{correo}}</p>
+    <h2>Foto</h2>
+    <p-avatar image={{imagen}} styleClass="mr-2" size="large" shape="circle"></p-avatar>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <h1>Consejos de seguridad</h1>
+    <ul>
+      <li>Desde este sitio web, nunca te pediremos contraseñas, PIN o códigos de verificación a través de WhatsApp, teléfono, SMS o email.</li><br>
+      <li>No uses servicios de pago anónimos (por ej. Western Union), ni envíes dinero al exterior.</li><br>
+      <li>Cuídate si mencionan ventas rápidas por mudanza.</li><br>
+      <li>No pagues sin verificar personalmente la documentación y el estado del vehículo.</li><br>
+      <li>Desconfía de ofertas debajo del precio de mercado.</li><br>
+      <li>Compra y venta de carros y sus afiliadas no tienen vehículos bajo su custodia.</li><br>
+    </ul>
+  </mat-card-content>
+
+</mat-card>
+</div>
+</div> 

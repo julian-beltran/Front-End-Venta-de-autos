@@ -6,6 +6,7 @@ import { Login } from './../../_Modelos/login';
 import { UserStoreService } from 'src/app/_servicios/user-store.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PassworForgetComponent } from './passwor-forget/passwor-forget.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService:AuthServicesService,
     private router:Router, private fb:FormBuilder,
+    private messageService: MessageService,
     public storeService:UserStoreService,
     public dialog: MatDialog
     ) {
@@ -53,16 +55,21 @@ export class LoginComponent implements OnInit {
      this.authService.login(this.loginForm.value).subscribe({
       next:(Response)=>{
        if(Response.exito===1){
+        
+        this.messageService.add({ severity: 'success', summary: 'Ingreso', detail: Response.mensaje,life:  20000 });
+         alert(Response.mensaje);
          const tokenPayLoad = this.authService.decodeToken();
          this.storeService.setNameFromStore(tokenPayLoad.unique_name);
-         this.storeService.setRolFromStore(tokenPayLoad.role)
-         alert(Response.mensaje)
+         this.storeService.setRolFromStore(tokenPayLoad.role);
+         this.storeService.setIdFromStore(tokenPayLoad.nameid);
          this.router.navigate(['/Inicio']);
+        
        }
-       alert(Response.mensaje)
+       this.messageService.add({ severity: 'error', summary: 'Error', detail: Response.mensaje, life: 10000 });
+       
      },
        error:(err)=>{
-             alert(err?.error.mensaje)
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err.Response.mensaje });
              } 
     });
   }

@@ -8,6 +8,7 @@ import { Login } from "../_Modelos/login";
 import { Register } from "../_Modelos/register";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
+import { FormUtil } from "../Tools/util";
 
 
 
@@ -51,7 +52,8 @@ export class AuthServicesService {
   }
 
   logUp(register:Register): Observable<Response>{
-    return this.http.post<Response>(`${this.url}/Register`,register, httpOption);
+    const formData = FormUtil.buildFormData(register);
+    return this.http.post<Response>(`${this.url}/Register`,formData);
   }
 
   login(login:Login):Observable<Response>{
