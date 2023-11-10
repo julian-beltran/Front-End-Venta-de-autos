@@ -2,6 +2,7 @@
     <br>
     <br>
     <h1>Lista de ofertas no aprovadas</h1>
+    <div class="tabla">
     <table mat-table [dataSource]="lst" class="mat-elevation-z8">
 
             <ng-container matColumnDef="Foto">
@@ -41,7 +42,7 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef> acciones </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-fab color="basic" [routerLink]="['/Aprovar', element.idVehicle]">
+                    <button mat-fab color="basic" [routerLink]="['/Oferta', element.idVehicle]">
                         ver
                     </button>
                 </td>
@@ -52,5 +53,6 @@
             <tr mat-header-row *matHeaderRowDef="display"></tr>
             <tr mat-row *matRowDef="let row; columns: display"></tr>
     </table>
-
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 </div>

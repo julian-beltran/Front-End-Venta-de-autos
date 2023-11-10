@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  HOST: 'https://localhost:44380',
+  // HOST: 'https://apicarros.azurewebsites.net',
+  HOST:'https://localhost:44380',
   azureStorageBaseUrl:'https://compraventacarros.blob.core.windows.net'
 };
 

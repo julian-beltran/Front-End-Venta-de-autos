@@ -30,6 +30,10 @@ img:hover{
     font-size: xx-large;
 
 }
+.icon{
+    font-size: xx-large;
+
+}
 
 .headerVendedor {
     display: flex;
@@ -42,4 +46,7 @@ img:hover{
  .pDescripcion{
     font-size: large;
 
+ }
+ .mat-form-full{
+    width: -webkit-fill-available;
  }

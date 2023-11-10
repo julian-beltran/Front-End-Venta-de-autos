@@ -1,0 +1,13 @@
+{
+    "data":[
+        {
+            "imagen":"assets/imagen3.jpeg"
+        },
+        {
+            "imagen":"assets/imagen2.jpeg"
+        },
+        {           
+            "imagen":"assets/imagen1.jpg"
+        }
+    ]
+}

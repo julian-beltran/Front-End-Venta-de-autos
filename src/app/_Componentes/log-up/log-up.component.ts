@@ -8,6 +8,7 @@ import { Register } from 'src/app/_Modelos/register';
 import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 import { environment } from 'src/environments/environment';
 import { usuario } from './../../_Modelos/Usuarios';
+import { BarraDeProgresoService } from 'src/app/_servicios/barra-de-progreso.service';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class LogUpComponent implements OnInit {
   azureStorageBaseUrl = environment.azureStorageBaseUrl;
   @ViewChild('imageFileUpload', { static: false }) imageFileUpload?: FileUpload;
 
-  constructor(public authService:AuthServicesService,
+  constructor(private barraProgresoService: BarraDeProgresoService,public authService:AuthServicesService,
     private router:Router, private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -56,6 +57,7 @@ export class LogUpComponent implements OnInit {
     );
   }
   log(){
+    this.barraProgresoService.progressBarReactiva.next(false);
     let usuario:Register={
       ...this.loginForm.value
     };
@@ -66,13 +68,16 @@ export class LogUpComponent implements OnInit {
       next:(Response)=>{
       if(Response.exito===1){
         alert(Response.mensaje);
+        this.barraProgresoService.progressBarReactiva.next(true);
         this.router.navigate(['/login']);
         
       }
       alert(Response.mensaje);
+      this.barraProgresoService.progressBarReactiva.next(true);
     },
      error:(err)=>{
        alert(" El formulario Esta mal diligenciado: "+err?.error.mensaje);
+       this.barraProgresoService.progressBarReactiva.next(true);
      }
   
   });

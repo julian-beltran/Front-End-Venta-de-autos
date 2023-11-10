@@ -19,6 +19,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -43,7 +44,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatOptionModule,
     MatDialogModule,
     MatButtonToggleModule,
-    MatAutocompleteModule 
+    MatAutocompleteModule,
+    MatPaginatorModule 
   ], exports: [
     MatButtonModule,
     MatIconModule,
@@ -62,7 +64,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatOptionModule,
     MatDialogModule,
     MatButtonToggleModule,
-    MatAutocompleteModule 
+    MatAutocompleteModule,
+    MatPaginatorModule 
   ]
 })
 export class MaterialModule { }

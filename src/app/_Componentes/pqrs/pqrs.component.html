@@ -1,0 +1,47 @@
+<div class="outer">
+    <mat-card>
+        <mat-card-title>RADICAR PQRS</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="pqrsForm" (ngSubmit)="add()">
+                
+                <div class="mat-form">
+                 <p>
+                    <mat-form-field class="mat-form-full">
+                        <mat-label>
+                            <mat-icon>person</mat-icon> Tipo de pqrs
+                        </mat-label>
+                        <input 
+                        type="text" 
+                        formControlName="tipoPqrs" 
+                        matInput 
+                        placeholder="tipo"
+                        [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                              {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </p>    
+                <p>
+                    <mat-form-field class="mat-form-full">
+                        <mat-label>
+                            <mat-icon>person</mat-icon> Mensaje
+                        </mat-label>
+                        <input type="text" formControlName="mensaje" matInput placeholder="Mensaje">
+                    </mat-form-field>
+                </p>
+                
+               
+                <mat-divider></mat-divider>
+                <br>
+                <div>
+                    <button type="submit" [disabled]="!pqrsForm.valid" mat-raised-button color="primary">Enviar mensaje</button>
+                </div>
+                <br>
+                </div>
+
+         </form>
+        </mat-card-content>
+    </mat-card>
+    </div>

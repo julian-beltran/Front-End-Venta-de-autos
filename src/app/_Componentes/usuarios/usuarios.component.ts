@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuariosService } from 'src/app/_servicios/usuarios.service';
 import { Response } from '../../_Modelos/response';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +8,9 @@ import { DeleteUsuarioComponent } from '../delete-usuario/delete-usuario.compone
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserStoreService } from 'src/app/_servicios/user-store.service';
 import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { BarraDeProgresoService } from 'src/app/_servicios/barra-de-progreso.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,13 +19,15 @@ import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 })
 export class UsuariosComponent implements OnInit {
   public name: string="";
-  public lst: any[];
+  public lst= new MatTableDataSource() ;
   public display:string[]=['id','nombre','apellido','telefono','ocupacion','sexo','direccion','edad','acciones']
+  @ViewChild(MatPaginator) paginator : MatPaginator;
   constructor(private usuariosService :UsuariosService,
               public dialog:MatDialog,
               public snackBar:MatSnackBar,
               private userStore: UserStoreService, 
-              public authServicesService:AuthServicesService) {}
+              public authServicesService:AuthServicesService,
+              private barraProgresoService: BarraDeProgresoService) {}
 
   ngOnInit(): void {
     this.userStore.getnameFromStore().subscribe(val=>{
@@ -30,10 +35,14 @@ export class UsuariosComponent implements OnInit {
       this.name = val || nameFromToken
     })
     this.getUsuarios();
+    
   }
   getUsuarios(){
+    this.barraProgresoService.progressBarReactiva.next(false);
     this.usuariosService.getUsers().subscribe(response=>{
-      this.lst=response.data;
+      this.lst=new MatTableDataSource(response.data);
+      this.lst.paginator = this.paginator;
+      this.barraProgresoService.progressBarReactiva.next(true);
   })}
   openadd(){
     const dialogRef= this.dialog.open(AddUsuarioComponent,{

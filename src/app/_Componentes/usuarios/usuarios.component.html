@@ -61,7 +61,9 @@
 
         <tr mat-header-row *matHeaderRowDef="display"></tr>
         <tr mat-row *matRowDef="let row; columns: display"></tr>
+        
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     <br>
     <div class="boton-nuevo">
         <button mat-raised-button color="primary" (click)="openadd()">

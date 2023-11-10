@@ -14,11 +14,11 @@ export class ResetPasswordService {
   constructor(private http:HttpClient, private router:Router) { }
 
   SendResetPassworLink(email:string): Observable<Response>{
-    return this.http.post<Response>(`${this.url}/send-reset-email/${email}`,{});
+    return this.http.put<Response>(`${this.url}/send-reset-email/${email}`,{});
   }
 
   resetPassword(resetPassword:ResetPassword): Observable<Response>{
-    return this.http.post<Response>(`${this.url}/reset-password`, resetPassword);
+    return this.http.put<Response>(`${this.url}/reset-password`, resetPassword);
   }
 
 }

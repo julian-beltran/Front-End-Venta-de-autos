@@ -4,6 +4,7 @@ import { ResetPassword } from './../../_Modelos/ResetPassword';
 import { ConfirmPasswordValidator } from 'src/app/Tools/PasswordValidator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResetPasswordService } from 'src/app/_servicios/reset-password.service';
+import { BarraDeProgresoService } from 'src/app/_servicios/barra-de-progreso.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -23,7 +24,8 @@ export class ResetPasswordComponent implements OnInit {
   isText: boolean = false;
   visibility: string ="visibility_off";
 
-  constructor(private fb:FormBuilder, private activateRoute:ActivatedRoute, 
+  constructor(private barraProgresoService: BarraDeProgresoService,
+    private fb:FormBuilder, private activateRoute:ActivatedRoute, 
     public resetPasswordService: ResetPasswordService, private router:Router) { }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class ResetPasswordComponent implements OnInit {
     })
   }
   reset(){
+    this.barraProgresoService.progressBarReactiva.next(false);
     this.resetPasswordO.email=this.emailToReset;
     this.resetPasswordO.newPassword=this.PasswordForm.value.Password;
     this.resetPasswordO.confirmPassword=this.PasswordForm.value.confirmPassword;
@@ -53,7 +56,11 @@ export class ResetPasswordComponent implements OnInit {
         if(Response.exito===1){
           alert(Response.mensaje);
           this.router.navigate(['/login'])
+          this.barraProgresoService.progressBarReactiva.next(true);
         }
+        alert(Response.mensaje);
+        this.router.navigate(['/login']);
+        this.barraProgresoService.progressBarReactiva.next(true);
       },
       error:(err)=>{
             alert(err?.error.mensaje);

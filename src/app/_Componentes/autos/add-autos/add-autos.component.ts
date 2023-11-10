@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FileUpload } from 'primeng/fileupload';
 import { CarsRequest } from 'src/app/_Modelos/cars';
 import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
+import { BarraDeProgresoService } from 'src/app/_servicios/barra-de-progreso.service';
 import { CarsService } from 'src/app/_servicios/cars.service';
 import { UserStoreService } from 'src/app/_servicios/user-store.service';
 import { UsuariosService } from 'src/app/_servicios/usuarios.service';
@@ -24,7 +25,7 @@ export class AddAutosComponent implements OnInit {
   public id:number
 
 
-  constructor(private router:Router, private fb:FormBuilder,public carService:CarsService,
+  constructor(private barraProgresoService: BarraDeProgresoService,private router:Router, private fb:FormBuilder,public carService:CarsService,
     private userStore: UserStoreService,public authServicesService:AuthServicesService,private usuariosService :UsuariosService) { }
   
   public CarsForm = this.fb.group({
@@ -49,13 +50,13 @@ export class AddAutosComponent implements OnInit {
      if(this.idname !== undefined){
        this.usuariosService.getUser(Number(this.idname)).subscribe(response=>{
          this.lst=response.data;
-         console.log(response.data);
      })
     }
     })
   }
 
   add(){
+    this.barraProgresoService.progressBarReactiva.next(false);
     let car:CarsRequest={
       ...this.CarsForm.value
     };
@@ -69,13 +70,15 @@ export class AddAutosComponent implements OnInit {
       next:(Response)=>{
       if(Response.exito===1){
         alert(Response.mensaje);
-        this.router.navigate(['/Autos']);
-        
+        this.router.navigate(['/MisOfertas']);
+        this.barraProgresoService.progressBarReactiva.next(true);
       }
       alert(Response.mensaje);
+      this.barraProgresoService.progressBarReactiva.next(true);
     },
      error:(err)=>{
        alert(" El formulario Esta mal diligenciado: "+err?.error.mensaje);
+       this.barraProgresoService.progressBarReactiva.next(true);
      }
   
   });

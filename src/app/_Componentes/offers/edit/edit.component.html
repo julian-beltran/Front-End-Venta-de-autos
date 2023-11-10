@@ -1,0 +1,91 @@
+<section>
+    <mat-card class="style">
+        <mat-card-title>Registrar vehiculo</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="CarsForm" (ngSubmit)="editVehicle($event)">
+                    
+
+                    <div class="mat-form">
+
+                        
+                       
+                        <table class="example-full-width" cellspacing="20"><tr>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Marca
+                                </mat-label>
+                                <input [(ngModel)]="lst.marca" type="text" formControlName="Marca" matInput placeholder="Renault, Mazda, Chevrolet">
+                            </mat-form-field></td>
+                            
+                            
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Linea
+                                </mat-label>
+                                <input [(ngModel)]="lst.linea" type="text" formControlName="Linea" matInput placeholder="Tuorin, frontier, Spark">
+                            </mat-form-field></td>
+                            
+                            
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Modelo
+                                </mat-label>
+                                <input [(ngModel)]="lst.modelo" type="number" formControlName="Modelo" matInput placeholder="2000,2015,2018">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Carroseria
+                                </mat-label>
+                                <input [(ngModel)]="lst.carroseria" type="text" formControlName="Carroseria" matInput placeholder="Automovil, Camioneta, Camion">
+                            </mat-form-field></td>
+                        </tr>
+                        </table>
+                        <table class="example-full-width" cellspacing="20"><tr>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Kilometraje
+                                </mat-label>
+                                <input [(ngModel)]="lst.kilometraje" type="text" formControlName="Kilometraje" matInput placeholder="0, 3000, 50000">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Placa
+                                </mat-label>
+                                <input [(ngModel)]="lst.placa" type="text" formControlName="Placa" matInput placeholder="aaa-000">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Precio
+                                </mat-label>
+                                <input [(ngModel)]="lst.precio" type="text" formControlName="Precio" matInput placeholder="10000000,30000000,50000000">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="mat-form-full">
+                                <mat-label>
+                                    <mat-icon>person</mat-icon> Descripción
+                                </mat-label>
+                                <textarea [(ngModel)]="lst.descripcion" type="text" formControlName="descripcion" matInput placeholder="Comente aqui! lo que quiera que vean sus compradores"></textarea>
+                            </mat-form-field></td>
+                        </tr>
+                        </table>
+                    </div>
+                
+                        <br>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <label>Inserte tres Fotos donde Se vea el Vehiculo</label>
+
+                        <p-fileUpload name="imagen" chooseLabel="insertar" accept="image/*" [auto]="true" [customUpload]="true" #imageFileUpload1></p-fileUpload>
+                        <p-fileUpload name="imagen" chooseLabel="insertar" accept="image/*" [auto]="true" [customUpload]="true" #imageFileUpload2></p-fileUpload>
+                        <p-fileUpload name="imagen" chooseLabel="insertar" accept="image/*" [auto]="true" [customUpload]="true" #imageFileUpload3></p-fileUpload>
+                    <br>
+                    <div style="display: flex;">
+                        <button type="submit" [disabled]="!CarsForm.valid"  mat-raised-button color="primary">Enviar Auto</button>
+                        <p>__</p>
+                        <button  mat-raised-button color="warn" [routerLink]="['/MisOfertas']">Cancelar</button>
+                    </div>
+
+                </form>
+                
+            </mat-card-content>     
+    </mat-card>
+</section>

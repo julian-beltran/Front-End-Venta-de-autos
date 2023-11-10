@@ -1,0 +1,8 @@
+.example-card {
+    max-width: 400px;
+  }
+  .cards{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}

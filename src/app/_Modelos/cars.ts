@@ -30,3 +30,12 @@ export interface CarsRequest{
     descripcion?:string;
     IdPersona?:number;
 }
+
+export interface Approval{
+    aprovacion?: boolean;
+}
+
+export interface SaleState{
+    estadoCompra?: boolean;
+}
+

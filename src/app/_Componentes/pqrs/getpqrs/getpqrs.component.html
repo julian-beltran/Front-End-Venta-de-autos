@@ -1,0 +1,44 @@
+<div>
+    <br>
+    <br>
+    <h1>PQRS</h1>
+    <table mat-table [dataSource]="lst" class="mat-elevation-z8">
+        <ng-container matColumnDef="imagen">
+            <th mat-header-cell *matHeaderCellDef> Foto </th>
+            <td mat-cell *matCellDef="let element">
+                
+                <p-avatar image={{element.imagen}} styleClass="mr-2" size="large" shape="circle"></p-avatar>
+            </td>
+        </ng-container>
+            <ng-container matColumnDef="tipoPqrs">
+                <th mat-header-cell *matHeaderCellDef> tipo de pqrs </th>
+                <td mat-cell *matCellDef="let element">{{element.tipoPqrs}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> nombre </th>
+                <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellido">
+                <th mat-header-cell *matHeaderCellDef> apellido </th>
+                <td mat-cell *matCellDef="let element">{{element.apellido}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef> telefono </th>
+                <td mat-cell *matCellDef="let element">{{element.telefono}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Mensaje">
+                <th mat-header-cell *matHeaderCellDef> Mensaje </th>
+                <td mat-cell *matCellDef="let element">{{element.mensaje}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="display"></tr>
+            <tr mat-row *matRowDef="let row; columns: display"></tr>
+        
+    </table>
+    
+
+</div>

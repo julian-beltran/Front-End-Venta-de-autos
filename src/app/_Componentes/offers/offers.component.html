@@ -1,0 +1,85 @@
+<br>
+<h1 style="font-family: cursive;
+font-size: xx-large; width: -webkit-fill-available; text-align: center;">Mis Ofertas</h1>
+<div class="contenedor" style="display: flex;
+flex-direction: row-reverse;
+justify-content: space-between;">
+
+<div style="display: flex;
+flex-direction: column;">
+<h1>Filtros</h1>
+<h2>Marca</h2>
+<mat-form-field class="example-form-field">
+<input matInput type="text" placeholder="Buscar por marca..." name="filterPost" [(ngModel)]="filterPost">
+</mat-form-field>
+<h2>Modelo</h2>
+<mat-form-field class="example-form-field">
+<input matInput type="text" placeholder="Buscar por modelo..." name="filterPostModelo" [(ngModel)]="filterPostModelo">
+</mat-form-field>
+<h2>Carroceria</h2>
+<mat-form-field class="example-form-field">
+<input matInput type="text" placeholder="Buscar por carroceria..." name="filterPostCarroseria" [(ngModel)]="filterPostCarroseria">
+</mat-form-field>
+</div>
+<div><p>___</p></div>
+<div>
+<div *ngFor="let list of lst | paginate: { itemsPerPage: 3, currentPage: page }| filter:filterPost| filterModelo:filterPostModelo | filterCarroseria:filterPostCarroseria" >
+  <mat-card class="example-card">
+      <mat-card-header>
+        <p>APROVADO Por el administrador: <strong *ngIf="list.aprovacion===false">NO</strong><strong *ngIf="list.aprovacion===true">SI</strong></p>
+    <div style="display: flex;
+    justify-content: space-between;
+    align-items: flex-end;">
+        <mat-card-title-group>
+        
+            <mat-card-title >{{list.precio}}$</mat-card-title>
+            <mat-card-subtitle>precio</mat-card-subtitle>
+        
+        </mat-card-title-group>
+        <div style="display: flex;
+            flex-direction: row;
+            align-items: baseline;" ><h2>Estado de compra: </h2><div *ngIf="list.estadoCompra===true">Comprado</div> <div *ngIf="list.estadoCompra===false">Aun en Venta</div></div>
+    </div>  
+    </mat-card-header>
+    <mat-divider></mat-divider>
+      <mat-card-content>
+        <div class="flex">
+            <h3><strong>marca: </strong>{{list.marca}} </h3>
+            <h3><strong>linea: </strong>{{list.linea}} </h3>
+            <h3><strong>modelo: </strong>{{list.modelo}} </h3>
+        </div>
+        <div class="flex">
+            <h3><strong>carroceria: </strong>{{list.carroseria}} </h3>
+            <h3><strong>kilometraje: </strong>{{list.kilometraje}} km </h3> 
+            <h3><strong>placa: </strong>{{list.placa}}</h3>
+        </div>
+          <br>
+          {{list.descripcion}}
+          <mat-divider></mat-divider>
+          <br>
+          <div class="images">
+            <img class="imagenO"src={{list.imagen1}}>
+            <img class="imagenO"src={{list.imagen2}}>
+            <img class="imagenO"src={{list.imagen3}}>
+          </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <button mat-button color="primary" [routerLink]="['/EditOferta', list.id]">Editar</button>
+        <button mat-button color="warning" (click)="openDelete(list.id)">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
+</div>
+<br>
+
+
+</div>
+<pagination-controls  
+                      (pageChange)="page = $event"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente">
+</pagination-controls>
+
+
+

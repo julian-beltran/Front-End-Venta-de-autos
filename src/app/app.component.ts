@@ -4,6 +4,7 @@ import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 import { Router } from '@angular/router';
 import { UserStoreService } from './_servicios/user-store.service';
 import { UsuariosService } from './_servicios/usuarios.service';
+import { BarraDeProgresoService } from './_servicios/barra-de-progreso.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,10 @@ export class AppComponent {
   public idname: string="";
   public lst: any[];
   public imagen:string;
-  constructor(private usuariosService :UsuariosService,public authServicesService:AuthServicesService,private router:Router, private userStore: UserStoreService){
+  public flagProgressBar: boolean = true;
+
+
+  constructor(private barraDeProgresoService: BarraDeProgresoService,private usuariosService :UsuariosService,public authServicesService:AuthServicesService,private router:Router, private userStore: UserStoreService){
       this.authServicesService.usua.subscribe(res=>{
           this.usuario=res;
           console.log(res);
@@ -40,13 +44,20 @@ export class AppComponent {
 
         
        if(this.idname !== undefined){
+        this.barraDeProgresoService.progressBarReactiva.next(false);
          this.usuariosService.getUser(Number(this.idname)).subscribe(response=>{
            this.lst=response.data;
            this.imagen=response.data.imagen;
-           console.log(response.data);
+           this.barraDeProgresoService.progressBarReactiva.next(true);
        })
       }
       })
+
+
+      this.barraDeProgresoService.progressBarReactiva.subscribe(data =>{
+        this.flagProgressBar = data;  
+        
+    });
      
   }
 
@@ -59,9 +70,11 @@ export class AppComponent {
 
 
   GetUserLogin(){
+    this.barraDeProgresoService.progressBarReactiva.next(false);
     this.usuariosService.getUser(Number(this.idname)).subscribe(response=>{
       this.lst=response.data;
       console.log(response.data);
+      this.barraDeProgresoService.progressBarReactiva.next(true);
   })
   }
 

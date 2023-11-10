@@ -1,0 +1,22 @@
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+.mat-card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.example-card {
+    max-width: 900px;
+    margin-bottom: 8px;
+  }
+  .imagenO{
+    max-width: 275px;
+    height: 206px;
+  }
+  .images{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }

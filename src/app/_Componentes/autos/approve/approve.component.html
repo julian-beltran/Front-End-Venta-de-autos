@@ -1,4 +1,4 @@
-<div class="secciones">
+<div class="secciones" *ngIf="estadoCompra===false || role ==='administrador'">
 <div class="contenedor">
 <p-carousel  [value]="imagenes" [numVisible]="1" [numScroll]="1" [circular]="true" >
   <ng-template pTemplate="item" let-imagenes>
@@ -10,12 +10,12 @@
 <br>
 <div class="propiedades">
   <h1>Caracteristicas del vehiculo</h1>
-<p>Modelo: {{modelo}}</p>
-<p>carroceria: {{carroseria}}</p>
-<p>Kilometraje: {{kilometraje}}</p>
-<p>Placa: {{placa}}</p>
-<p>Precio: {{precio}}</p>
-<p>Color: plateado</p>
+<p><mat-icon>calendar_today</mat-icon> Modelo: {{modelo}}</p>
+<p><mat-icon> directions_bus</mat-icon> Carroceria: {{carroseria}}</p>
+<p><mat-icon>shutter_speed</mat-icon> Kilometraje: {{kilometraje|number}}Km</p>
+<p><mat-icon> money</mat-icon> Placa: {{placa}}</p>
+<p><mat-icon> attach_money</mat-icon> Precio: {{precio| currency: 'USD' : 'symbol' : '1.0-0'}}</p>
+<p><mat-icon>color_lens</mat-icon> Color: plateado</p>
 
 </div>
 <br>
@@ -30,9 +30,65 @@
 <br>
 <mat-divider></mat-divider>
 <br>
+<div *ngIf="role==='comprador'">
+  <h1>Contacta al particular</h1>
+<form  [formGroup]="messageForm" (ngSubmit)="Message()">
+  <table class="example-full-width" cellspacing="5"><tr>
+    <td>
+      <mat-form-field class="mat-form-full">
+          <mat-label>
+              Nombre
+          </mat-label>
+          <input type="text" formControlName="nombre" matInput placeholder="Nombre">
+      </mat-form-field>
+  </td>
+  <td>
+      <mat-form-field class="mat-form-full">
+          <mat-label>
+               apellido
+          </mat-label>
+          <input type="text" formControlName="apellido" matInput placeholder="Apellido">
+      </mat-form-field>
+  </td>
+  </tr></table>
+  <table class="example-full-width" cellspacing="5"><tr>
+    <td>
+      <mat-form-field class="mat-form-full">
+          <mat-label>
+               E-Mail
+          </mat-label>
+          <input type="text" formControlName="email" matInput placeholder="Email">
+      </mat-form-field>
+  </td>
+  <td>
+      <mat-form-field class="mat-form-full">
+          <mat-label>
+               Telefono
+          </mat-label>
+          <input type="text" formControlName="telefono" matInput placeholder="Telefono">
+      </mat-form-field>
+  </td>
+  </tr>
+</table>
+<mat-form-field class="mat-form-full">
+  <mat-label>
+      Pregunta
+  </mat-label>
+  <textarea style="height: 70px;" type="text" formControlName="pregunta" matInput placeholder="Comente aqui!"></textarea>
+</mat-form-field>
+<br>
+<div>
+  <button type="submit" [disabled]="!messageForm.valid"  mat-raised-button color="primary">Preguntar</button>
+</div>
+</form>
+<br>
+<br>
+</div>
+
+<div *ngIf="aprovacion === false && role ==='administrador'">
 <h1>¿DESEA APROVAR ESTA PUBLICACION?</h1>
-<button mat-raised-button color="primary">Confirmar</button>
-  
+<button mat-raised-button color="primary" (click)="openDialog(idVehicle)">Confirmar</button>
+</div> 
 </div>
 
 <div>
@@ -40,17 +96,20 @@
 <mat-card class="cardPrecio">
   <mat-card-header class="headerPrecio">
     <mat-card-title-group>
-      <mat-card-subtitle>publicado el 1 de febrero del 2022</mat-card-subtitle>
+      <mat-card-subtitle>publicado el {{fecha | date}}</mat-card-subtitle>
       <br>
       <mat-card-title>{{marca}} {{linea}}</mat-card-title>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
-    <h1 class="h1Precio">{{precio}}$</h1>
+    <h1 class="h1Precio">{{precio | currency: 'USD' : 'symbol' : '1.0-0'}}</h1>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary">Descargar Cotización</button>
-    <button mat-stroked-button color="primary">Comprar</button>
+  <mat-card-actions style="display: flex; flex-direction: column;">
+    <button mat-raised-button color="primary" (click)="createPdf()">Descargar Cotización</button> 
+    <br>
+   
+    <div *ngIf="role==='comprador'"><ngx-paypal [config]="payPalConfig"></ngx-paypal></div>
+    
   </mat-card-actions>
 
 </mat-card>  
@@ -63,11 +122,11 @@
   </mat-card-header>
   <mat-card-content>
     <h1 class="h1Vendedor">{{nombre}} {{apellido}}</h1>
-    <h2>Telefono</h2>
+    <h2><mat-icon> local_phone</mat-icon> Telefono</h2>
     <p class="pVendedor">{{telefono}}</p>
-    <h2>Dirección</h2>
+    <h2><mat-icon> location_on</mat-icon> Dirección</h2>
     <p class="pVendedor">{{direccion}}</p>
-    <h2>Correo electronico</h2>
+    <h2><mat-icon> email</mat-icon> Correo electronico</h2>
     <p class="pVendedor">{{correo}}</p>
     <h2>Foto</h2>
     <p-avatar image={{imagen}} styleClass="mr-2" size="large" shape="circle"></p-avatar>

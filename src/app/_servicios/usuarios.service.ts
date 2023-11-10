@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response } from '../_Modelos/response';
 import { usuario } from '../_Modelos/Usuarios';
+import { Register } from '../_Modelos/register';
+import { FormUtil } from '../Tools/util';
 
 const httpOption={
   headers:new HttpHeaders({
@@ -34,5 +36,10 @@ export class UsuariosService {
 
   getUser(id:number):Observable<Response>{
     return this.http.get<Response>(`${this.url}/${id}`);
+  }
+
+  editMyUser(register:Register): Observable<Response>{
+    const formData = FormUtil.buildFormData(register);
+    return this.http.put<Response>(`${this.url}/editar`,formData);
   }
 }

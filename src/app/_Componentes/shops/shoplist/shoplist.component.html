@@ -1,0 +1,48 @@
+<H1 style="text-align: -webkit-center;">Registro de vehiculos Comprados</H1>
+<div style="display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+margin-top: 10px;">
+
+
+<div *ngFor="let list of lst | paginate: { itemsPerPage: 2, currentPage: page }">
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Fecha de compra:</mat-card-title>
+        <mat-card-subtitle>{{list.fecha | date}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{list.imagen1}} alt="Photo of a Shiba Inu" >
+    <mat-card-content>
+      <h2>Tipo de pago</h2>
+      <ul>
+        <li><strong>Metodo: </strong>{{list.tipoVenta}}</li>
+      </ul>  
+      <mat-divider></mat-divider>  
+      <h2>Datos de la cuenta de paypal</h2>
+      <ul>
+        <li><strong>Nombre del titular: </strong>{{list.nombreTitular}}</li>
+        <li><strong>Apellido del titular: </strong>{{list.apellidoTitular}}</li>
+        <li><strong>Cuenta de paypal: </strong>{{list.correoPaypal}}</li>
+      </ul>
+      <mat-divider></mat-divider>
+      <h2>datos del vehiculo </h2>
+      <ul>
+        <li><strong>Marca: </strong>{{list.marca}}</li>
+        <li><strong>Linea: </strong>{{list.linea}}</li>
+        <li><strong>Modelo: </strong>{{list.modelo}}</li>
+        <li><strong>Carroseria: </strong>{{list.carroseria}}</li>
+        <li><strong>Kilometraje: </strong>{{list.kilometraje}}</li>
+        <li><strong>Placa: </strong>{{list.placa}}</li>
+        <li><strong>Precio: </strong>{{list.precio}}</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>
+<pagination-controls  style="text-align: -webkit-center;"
+                      (pageChange)="page = $event"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente">
+</pagination-controls>
+

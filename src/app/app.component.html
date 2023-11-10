@@ -1,10 +1,13 @@
-<mat-toolbar color="accent" class="example-toolbar"*ngIf="usuario">
+<div [hidden]="flagProgressBar">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<mat-toolbar color="primary" class="example-toolbar"*ngIf="usuario">
   <button mat-icon-button (click)="drawer.toggle()" >
     <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
     <mat-icon *ngIf="drawer.opened">close</mat-icon>
   </button>
-  <h1>Bienvenido! {{name}} id {{idname}}</h1>
-  <button mat-raised-button (click)="logOut()" *ngIf="usuario">
+  <h1>Bienvenido! {{name}}</h1>
+  <button mat-raised-button (click)="logOut()">
     <mat-icon>exit_to_app</mat-icon>
     <span>Cerrar Sesión</span>
   </button>
@@ -13,47 +16,112 @@
   </mat-menu>
   
 </mat-toolbar>
-
-<mat-drawer-container class="example-sidenav-content" autosize >
+<div [hidden]="flagProgressBar">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<mat-drawer-container class="example-sidenav-content" autosize>
   <mat-drawer #drawer style="width: 200px" mode="side" >
     <div *ngIf="usuario">
       
         <img class="circular--square" src={{imagen}} width="128" style="margin-left: 20px;" />
       
       <div *ngIf="imagen === null">
-        <img class="circular--square" src="https://assets.stickpng.com/images/585e4beacb11b227491c3399.png" width="128" style="margin-left: 20px;">
+        <img class="circular--square" src="assets/perfil.jpg" width="128" style="margin-left: 20px;">
       </div>
         <mat-divider></mat-divider>
     <ng-container *ngIf="role==='administrador'">
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Inicio']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+    <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Usuarios']">
       <mat-icon>search</mat-icon>
       <span>Usuarios</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AprovarAutos']">
-      <mat-icon>search</mat-icon>
-      <span>Ofertas</span>
+      <mat-icon>shopping_cart</mat-icon>
+      <span>No aprovados</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AutosAprovados']">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>Aprovados</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MisPqrs']">
+      <mat-icon>contact_support</mat-icon>
+      <span>PQRS</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MiPerfil']">
+      <mat-icon>account_box</mat-icon>
+      <span>Perfil</span>
     </button>
   </ng-container>
-    
+  <mat-divider></mat-divider>
     <ng-container *ngIf="role==='vendedor'">
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Inicio']">
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
     </button>
+    <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AgregarAuto']">
-      <mat-icon>home</mat-icon>
+      <mat-icon>commute</mat-icon>
       <span>vender Auto</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MisOfertas']">
+      <mat-icon>commute</mat-icon>
+      <span>Mis ofertas</span>
+    </button>
+    <mat-divider></mat-divider> 
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MisVentas']">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>Mis ventas</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Mensajes']">
+      <mat-icon>message</mat-icon>
+      <span>Preguntas</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MiPerfil']">
+      <mat-icon>account_box</mat-icon>
+      <span>Perfil</span>
     </button>
   </ng-container>
     <mat-divider></mat-divider>
     <ng-container *ngIf="role==='comprador'">
+      <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Inicio']">
+        <mat-icon>home</mat-icon>
+        <span>Inicio</span>
+      </button>
+      <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Autos']">
-      <mat-icon>cars</mat-icon>
+      <mat-icon>directions_car</mat-icon>
       <span>Ver Autos</span>
     </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MisCompras']">
+      <mat-icon> beenhere</mat-icon>
+      <span>Mis Autos</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/Pqrs']">
+      <mat-icon>contact_support</mat-icon>
+      <span>PQRS</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MiPerfil']">
+      <mat-icon>account_box</mat-icon>
+      <span>Perfil</span>
+    </button>
+    <mat-divider></mat-divider>
   </ng-container>
     <mat-divider></mat-divider>
+  
   </div>
   </mat-drawer>
 
@@ -62,3 +130,13 @@
   </div>
     
   </mat-drawer-container>
+  <footer class="footer">
+    <div class="logo"></div>
+    <nav>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </nav>
+  </footer>

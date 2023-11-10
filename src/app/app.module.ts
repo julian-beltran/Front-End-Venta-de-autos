@@ -32,6 +32,25 @@ import { ApproveComponent } from './_Componentes/autos/approve/approve.component
 import { GalleriaModule } from 'primeng/galleria';
 import {CarouselModule} from 'primeng/carousel';
 import {ButtonModule} from 'primeng/button';
+import { DialogComponent } from './_Componentes/autos/dialog/dialog.component';
+import { MensajeComponent } from './_Componentes/mensaje/mensaje.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { DialogSalesComponent } from './_Componentes/ventas/dialog-sales/dialog-sales.component';
+import { ApproveCarTrueComponent } from './_Componentes/autos/approve-car-true/approve-car-true.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ShoplistComponent } from './_Componentes/shops/shoplist/shoplist.component';
+import { FilterPipe } from './_pipes/filter.pipe';
+import { FilterModeloPipe } from './_pipes/filter-modelo.pipe';
+import { FilterCarroseriaPipe } from './_pipes/filter-carroseria.pipe';
+import { OffersComponent } from './_Componentes/offers/offers.component';
+import { EditComponent } from './_Componentes/offers/edit/edit.component';
+import { DeleteComponent } from './_Componentes/offers/delete/delete.component';
+import { SaleslistComponent } from './_Componentes/ventas/saleslist/saleslist.component';
+import { PqrsComponent } from './_Componentes/pqrs/pqrs.component';
+import { GetpqrsComponent } from './_Componentes/pqrs/getpqrs/getpqrs.component';
+import { UsersComponent } from './_Componentes/users/users.component';
+import { EditUserComponent } from './_Componentes/users/edit-user/edit-user.component';
+
 
 
 
@@ -51,7 +70,23 @@ import {ButtonModule} from 'primeng/button';
     ResetPasswordComponent,
     AddAutosComponent,
     ApproveCarComponent,
-    ApproveComponent
+    ApproveComponent,
+    DialogComponent,
+    MensajeComponent,
+    DialogSalesComponent,
+    ApproveCarTrueComponent,
+    ShoplistComponent,
+    FilterPipe,
+    FilterModeloPipe,
+    FilterCarroseriaPipe,
+    OffersComponent,
+    EditComponent,
+    DeleteComponent,
+    SaleslistComponent,
+    PqrsComponent,
+    GetpqrsComponent,
+    UsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -68,12 +103,15 @@ import {ButtonModule} from 'primeng/button';
     AvatarGroupModule,
     GalleriaModule,
     CarouselModule,
-    ButtonModule
+    ButtonModule,
+    NgxPayPalModule,
+    NgxPaginationModule
     
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true},
-    ConfirmationService, MessageService
+    ConfirmationService, MessageService,
+    
   ],
   bootstrap: [AppComponent]
 })
