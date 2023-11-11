@@ -1,4 +1,7 @@
-<section>
+<div *ngIf="lst.idUsuario !== id">
+    <app-no-permission></app-no-permission>
+</div>
+<section *ngIf="lst.idUsuario === id">
     <mat-card class="style">
         <mat-card-title>Registrar vehiculo</mat-card-title>
             <mat-card-content>

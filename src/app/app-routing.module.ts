@@ -20,6 +20,8 @@ import { PqrsComponent } from './_Componentes/pqrs/pqrs.component';
 import { GetpqrsComponent } from './_Componentes/pqrs/getpqrs/getpqrs.component';
 import { UsersComponent } from './_Componentes/users/users.component';
 import { EditUserComponent } from './_Componentes/users/edit-user/edit-user.component';
+import { NoPermissionComponent } from './_Componentes/no-permission/no-permission.component';
+import { GetAllSalesComponent } from './_Componentes/ventas/get-all-sales/get-all-sales.component';
 
 
 
@@ -42,9 +44,11 @@ const routes: Routes = [
   {path: 'MisPqrs', component : GetpqrsComponent, canActivate: [AuthGuard]},
   {path: 'MiPerfil', component : UsersComponent, canActivate: [AuthGuard]},
   {path: 'EditarPerfil/:id', component : EditUserComponent, canActivate: [AuthGuard]},
+  {path: 'GetSales', component : GetAllSalesComponent, canActivate: [AuthGuard]},
   {path: 'Registro', component: LogUpComponent},
   {path: 'login', component: LoginComponent },
-  {path: 'reset', component:ResetPasswordComponent}
+  {path: 'reset', component:ResetPasswordComponent},
+  {path: 'SinPermiso', component:NoPermissionComponent}
   
 
   

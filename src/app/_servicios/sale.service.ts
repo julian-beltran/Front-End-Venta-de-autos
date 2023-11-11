@@ -23,4 +23,7 @@ export class SaleService {
   getSales(id:number):Observable<Response>{
     return this.http.get<Response>(`${this.url}/MySales/${id}`)
   }
+  getAllSales():Observable<Response>{
+    return this.http.get<Response>(`${this.url}/getSales`)
+  }
 }

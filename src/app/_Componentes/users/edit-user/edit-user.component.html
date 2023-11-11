@@ -1,4 +1,8 @@
-<div class="outer">
+
+<div *ngIf="lst.id !== id">
+    <app-no-permission></app-no-permission>
+</div>
+<div class="outer" *ngIf="lst.id === id">
     <mat-card>
         <mat-card-title>Registro</mat-card-title>
         <mat-card-content>

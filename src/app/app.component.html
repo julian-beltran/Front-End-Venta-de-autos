@@ -46,8 +46,13 @@
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/AutosAprovados']">
-      <mat-icon>shopping_cart</mat-icon>
+      <mat-icon>directions_car</mat-icon>
       <span>Aprovados</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/GetSales']">
+      <mat-icon>directions_car</mat-icon>
+      <span>Ventas</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/MisPqrs']">

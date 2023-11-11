@@ -4,7 +4,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FileUpload } from 'primeng/fileupload';
 import { Observable, map, startWith } from 'rxjs';
 import { Register } from 'src/app/_Modelos/register';
+import { AuthServicesService } from 'src/app/_servicios/auth-services.service';
 import { BarraDeProgresoService } from 'src/app/_servicios/barra-de-progreso.service';
+import { UserStoreService } from 'src/app/_servicios/user-store.service';
 import { UsuariosService } from 'src/app/_servicios/usuarios.service';
 import { environment } from 'src/environments/environment';
 
@@ -19,8 +21,12 @@ export class EditUserComponent implements OnInit {
     private barraProgresoService: BarraDeProgresoService,
     private router:Router, 
     private route: ActivatedRoute,
-    private fb:FormBuilder) { }
+    private fb:FormBuilder,
+    private userStore: UserStoreService,
+    public authServicesService:AuthServicesService) { }
     public lst: any;
+    public id:number;
+    public idname: string="";
     myControl2 = new FormControl('');
     options2: string[] = ['masculino', 'femenino','otro'];
     filteredOptions2: Observable<string[]>;
@@ -50,6 +56,12 @@ export class EditUserComponent implements OnInit {
       startWith(''),
       map(value => this._filter2(value)),
     );
+
+    this.userStore.getIdFromStore().subscribe(val=>{
+      const IdFromToken = this.authServicesService.getIdFromToken();
+      this.idname = val || IdFromToken
+      this.id= Number(this.idname);
+    })
   }
 
   loadUser(id:number): void{

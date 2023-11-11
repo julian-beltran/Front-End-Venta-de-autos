@@ -50,6 +50,8 @@ import { PqrsComponent } from './_Componentes/pqrs/pqrs.component';
 import { GetpqrsComponent } from './_Componentes/pqrs/getpqrs/getpqrs.component';
 import { UsersComponent } from './_Componentes/users/users.component';
 import { EditUserComponent } from './_Componentes/users/edit-user/edit-user.component';
+import { NoPermissionComponent } from './_Componentes/no-permission/no-permission.component';
+import { GetAllSalesComponent } from './_Componentes/ventas/get-all-sales/get-all-sales.component';
 
 
 
@@ -86,7 +88,9 @@ import { EditUserComponent } from './_Componentes/users/edit-user/edit-user.comp
     PqrsComponent,
     GetpqrsComponent,
     UsersComponent,
-    EditUserComponent
+    EditUserComponent,
+    NoPermissionComponent,
+    GetAllSalesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,6 @@
+<div *ngIf="estadoCompra===true && role ==='comprador'">
+    <app-no-permission></app-no-permission>
+</div>
 <div class="secciones" *ngIf="estadoCompra===false || role ==='administrador'">
 <div class="contenedor">
 <p-carousel  [value]="imagenes" [numVisible]="1" [numScroll]="1" [circular]="true" >

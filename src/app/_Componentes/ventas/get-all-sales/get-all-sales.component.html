@@ -1,0 +1,53 @@
+<br>
+<h1>VENTAS REGISTRADAS</h1>
+<br>
+<div>
+    <table mat-table [dataSource]="lst" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="imagen">
+            <th mat-header-cell *matHeaderCellDef> Foto </th>
+            <td mat-cell *matCellDef="let element">
+                
+                <p-avatar image={{element.imagen}} styleClass="mr-2" size="large" shape="circle"></p-avatar>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> id </th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> nombre </th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}-{{element.apellido}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef> telefono </th>
+            <td mat-cell *matCellDef="let element">{{element.telefono}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Nombre paypal">
+            <th mat-header-cell *matHeaderCellDef> Nombre Paypal </th>
+            <td mat-cell *matCellDef="let element">{{element.nombreTitular}}-{{element.apellidoTitular}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehiculo">
+            <th mat-header-cell *matHeaderCellDef> Vehiculo </th>
+            <td mat-cell *matCellDef="let element">{{element.marca}}-{{element.linea}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="placa">
+            <th mat-header-cell *matHeaderCellDef> Placa </th>
+            <td mat-cell *matCellDef="let element">{{element.placa}}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="display"></tr>
+        <tr mat-row *matRowDef="let row; columns: display"></tr>
+        
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <br>
+  
+</div>
